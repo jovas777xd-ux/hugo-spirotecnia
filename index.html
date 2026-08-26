@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo's Pirotecnia</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#050505;color:white;overflow-x:hidden}
+
+#particles{position:fixed;inset:0;pointer-events:none;z-index:1}
+.spark{position:absolute;width:3px;height:3px;background:#ff7b00;border-radius:50%;box-shadow:0 0 10px #ff4500;animation:subir linear infinite}
+@keyframes subir{
+0%{transform:translateY(100vh);opacity:0}
+20%{opacity:1}
+80%{opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
+}
+
+header{
+position:fixed;top:0;left:0;width:100%;height:75px;padding:0 7%;
+display:flex;align-items:center;justify-content:space-between;
+background:rgba(5,5,5,.85);backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,70,0,.25);z-index:100
+}
+
+/* LOGOTIPO EN LA ESQUINA SUPERIOR IZQUIERDA (CÍRCULO PEQUEÑO + TEXTO) */
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-img{
+width:42px;height:42px;border-radius:50%;object-fit:cover;
+border:2px solid #ff5700;box-shadow:0 0 15px rgba(255,70,0,0.6);
+}
+.logo-texts{display:flex;flex-direction:column;justify-content:center}
+.logo-main{font-size:18px;font-weight:900;letter-spacing:1px;line-height:1.1}
+.logo-main span{color:#ff5a00;text-shadow:0 0 10px #ff4500}
+.logo-sub{font-size:9px;color:#ff7b00;font-weight:bold;letter-spacing:1.5px;margin-top:2px}
+
+nav{display:flex;gap:30px}
+nav a{color:#ddd;text-decoration:none;font-size:14px;font-weight:bold;transition:.3s}
+nav a:hover{color:#ff6500}
+.menu{display:none;font-size:28px;cursor:pointer}
+
+.hero{
+min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;padding:120px 20px 80px;position:relative;overflow:hidden;
+background:radial-gradient(circle at center,rgba(255,70,0,.2),transparent 45%)
+}
+
+.hero-content{position:relative;z-index:3}
+
+/* LOGOTIPO GRANDE EN EL INICIO */
+.hero-confi-logo {
+width: 200px;
+height: 200px;
+border-radius: 50%;
+object-fit: cover;
+border: 5px solid #ff5700;
+box-shadow: 0 0 50px rgba(255, 70, 0, 0.7);
+margin: 0 auto 25px auto;
+display: block;
+transition: transform 0.3s ease;
+}
+.hero-confi-logo:hover {
+transform: scale(1.08) rotate(3deg);
+}
+
+.badge{
+display:inline-block;border:1px solid #ff5500;border-radius:50px;
+padding:8px 18px;color:#ff7b00;font-size:11px;font-weight:bold;
+letter-spacing:2px;margin-bottom:20px;background:rgba(255,75,0,0.08)
+}
+
+.hero h1{font-size:clamp(40px,7vw,90px);line-height:.95;font-weight:900;letter-spacing:-3px}
+.hero h1 span{
+background:linear-gradient(90deg,#ff2500,#ff6500,#ffb000);
+-webkit-background-clip:text;background-clip:text;color:transparent
+}
+
+.hero p{max-width:650px;margin:25px auto;color:#aaa;font-size:17px;line-height:1.7}
+
+.buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 30px;border-radius:8px;text-decoration:none;font-weight:bold;transition:.3s}
+.primary{color:white;background:linear-gradient(135deg,#ff2500,#ff7200);box-shadow:0 0 30px rgba(255,70,0,.35)}
+.primary:hover{transform:translateY(-5px);box-shadow:0 0 45px rgba(255,70,0,.7)}
+.secondary{color:white;border:1px solid #444}
+.secondary:hover{border-color:#ff5500;color:#ff6500}
+
+section{padding:100px 7%}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title small{color:#ff6500;font-weight:bold;letter-spacing:3px}
+.section-title h2{font-size:45px;margin-top:10px}
+.section-title span{color:#ff5700}
+
+.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.filter{
+padding:10px 20px;border-radius:50px;background:#111;border:1px solid #333;
+color:#aaa;cursor:pointer;transition:.3s
+}
+.filter:hover,.filter.active{background:#ff4b00;border-color:#ff4b00;color:white}
+
+.products{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px
+}
+
+.card{
+background:linear-gradient(145deg,#151515,#090909);
+border:1px solid #252525;border-radius:18px;overflow:hidden;
+transition:.4s;position:relative
+}
+.card:hover{border-color:#ff4b00;box-shadow:0 15px 45px rgba(255,60,0,.25)}
+
+.product-image{
+height:230px;display:flex;justify-content:center;align-items:center;
+font-size:80px;background:radial-gradient(circle,rgba(255,70,0,.2),transparent 60%),#0b0b0b
+}
+
+.tag{
+position:absolute;top:15px;left:15px;padding:6px 10px;
+background:#ff4500;border-radius:5px;font-size:10px;font-weight:bold
+}
+
+.card-content{padding:22px}
+.card-content h3{margin-bottom:10px}
+.card-content p{color:#888;font-size:13px;line-height:1.6;margin-bottom:18px}
+
+.card-btn{
+float:right;padding:8px 14px;background:transparent;color:#ff6500;
+border:1px solid #ff4b00;border-radius:6px;cursor:pointer;transition:.3s
+}
+.card-btn:hover{background:#ff4b00;color:white}
+
+.selection-btn{
+width:100%;margin-top:12px;padding:10px;
+background:transparent;color:#ff6500;border:1px solid #ff4b00;
+border-radius:6px;cursor:pointer;font-weight:bold;transition:.3s
+}
+.selection-btn:hover{background:#ff4b00;color:white}
+
+.banner{
+margin:20px 7%;padding:70px 30px;text-align:center;border-radius:25px;
+background:linear-gradient(135deg,rgba(255,40,0,.25),rgba(255,120,0,.08)),#101010;
+border:1px solid rgba(255,70,0,.3)
+}
+.banner h2{font-size:40px;margin-bottom:15px}
+.banner h2 span{color:#ff6500}
+.banner p{color:#999;max-width:600px;margin:auto;line-height:1.7}
+
+.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about h2{font-size:45px;margin:15px 0 20px}
+.about h2 span{color:#ff5700}
+.about p{color:#999;line-height:1.8;margin-bottom:15px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.stat{padding:25px 10px;text-align:center;background:#111;border:1px solid #222;border-radius:12px}
+.stat strong{display:block;font-size:30px;color:#ff6200;margin-bottom:8px}
+.stat span{color:#777;font-size:10px}
+
+.contact{text-align:center}
+.contact-box{
+max-width:850px;margin:auto;padding:45px;background:#101010;
+border:1px solid #252525;border-radius:20px
+}
+.contact-box p{color:#999;margin:15px 0 30px}
+.contact-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.contact-btn{
+padding:14px 25px;border-radius:8px;color:white;text-decoration:none;
+background:#151515;border:1px solid #333;transition:.3s
+}
+.contact-btn:hover{border-color:#ff5500;color:#ff6500}
+
+footer{
+padding:35px 7%;text-align:center;border-top:1px solid #1d1d1d;
+color:#555;font-size:13px
+}
+footer span{color:#ff5b00}
+
+.modal{
+display:none;position:fixed;inset:0;z-index:300;justify-content:center;
+align-items:center;padding:20px;background:rgba(0,0,0,.88)
+}
+.modal.show{display:flex}
+.modal-box{
+position:relative;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;
+padding:35px;background:#111;border:1px solid #ff4b00;border-radius:18px;
+box-shadow:0 0 60px rgba(255,60,0,.3)
+}
+.close{
+position:absolute;right:20px;top:15px;font-size:28px;color:#777;cursor:pointer;z-index:5
+}
+.close:hover{color:#ff5500}
+.modal-box h2{margin-bottom:15px}
+.modal-box p{color:#999;line-height:1.7}
+
+.video-container{
+position:relative;width:100%;padding-bottom:56.25%;margin-top:20px;
+overflow:hidden;border-radius:12px;background:#050505
+}
+.video-container iframe{
+position:absolute;width:100%;height:100%;border:0
+}
+
+/* =========================
+   PANEL DE AGREGAR
+========================= */
+#selectionButton{
+position:fixed;right:25px;bottom:25px;width:62px;height:62px;
+border-radius:50%;border:1px solid #ff5700;
+background:linear-gradient(135deg,#ff2500,#ff7200);
+color:white;font-size:25px;cursor:pointer;z-index:150;
+box-shadow:0 0 30px rgba(255,70,0,.45);transition:.3s
+}
+#selectionButton:hover{
+transform:scale(1.1);
+box-shadow:0 0 45px rgba(255,70,0,.75)
+}
+#selectionCount{
+position:absolute;top:-5px;right:-5px;min-width:23px;height:23px;
+border-radius:50%;background:white;color:#ff4500;
+display:flex;align-items:center;justify-content:center;
+font-size:11px;font-weight:bold
+}
+#selectionOverlay{
+position:fixed;inset:0;background:rgba(0,0,0,.7);
+backdrop-filter:blur(4px);z-index:190;display:none
+}
+#selectionOverlay.show{display:block}
+#selectionPanel{
+position:fixed;top:0;right:-430px;width:420px;max-width:92%;height:100vh;
+background:#0c0c0c;border-left:1px solid #ff4b00;z-index:200;
+transition:.4s ease;box-shadow:-15px 0 50px rgba(0,0,0,.8);
+display:flex;flex-direction:column
+}
+#selectionPanel.open{right:0}
+.selectionHeader{
+padding:25px;display:flex;justify-content:space-between;
+align-items:center;border-bottom:1px solid #222
+}
+.selectionHeader small{color:#ff6500;letter-spacing:3px;font-weight:bold}
+.selectionHeader h2{margin-top:5px}
+.closeSelection{
+border:none;background:transparent;color:#777;font-size:32px;cursor:pointer
+}
+.closeSelection:hover{color:#ff5700}
+.selectionDescription{
+padding:20px 25px;color:#777;font-size:13px;line-height:1.6
+}
+#selectionItems{
+flex:1;overflow-y:auto;padding:0 20px
+}
+.selectionItem{
+display:flex;align-items:center;gap:15px;padding:15px;margin-bottom:12px;
+background:#151515;border:1px solid #242424;border-radius:12px
+}
+.selectionEmoji{
+width:55px;height:55px;display:flex;align-items:center;
+justify-content:center;border-radius:10px;
+background:radial-gradient(circle,rgba(255,70,0,.2),transparent),#090909;
+font-size:30px
+}
+.selectionInfoText{flex:1}
+.selectionInfoText h3{font-size:14px;margin-bottom:6px}
+.selectionInfoText p{color:#777;font-size:11px}
+.removeSelection{
+border:1px solid #333;background:transparent;color:#777;
+width:32px;height:32px;border-radius:6px;cursor:pointer
+}
+.removeSelection:hover{color:white;background:#ff4500;border-color:#ff4500}
+.emptySelection{text-align:center;padding:60px 20px;color:#555}
+.emptySelection strong{display:block;font-size:45px;margin-bottom:15px}
+.emptySelection p{font-size:13px}
+.selectionFooter{
+padding:20px 25px;border-top:1px solid #222;background:#090909
+}
+.clearSelection{
+width:100%;padding:12px;border:1px solid #ff4b00;
+background:transparent;color:#ff6500;border-radius:7px;
+cursor:pointer;font-weight:bold;transition:.3s
+}
+.clearSelection:hover{background:#ff4b00;color:white}
+
+@media(max-width:750px){
+header{padding:0 5%}
+nav{
+display:none;position:absolute;top:75px;left:0;width:100%;
+padding:25px;background:#090909;flex-direction:column;text-align:center
+}
+nav.show{display:flex}
+.menu{display:block}
+section{padding:75px 5%}
+.hero h1{letter-spacing:-3px}
+.about{grid-template-columns:1fr}
+.stats{grid-template-columns:repeat(3,1fr)}
+.banner{margin:20px 5%}
+}
+@media(max-width:500px){
+#selectionPanel{width:100%;max-width:100%}
+#selectionButton{right:18px;bottom:18px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<header>
+<a href="#inicio" class="logo">
+<img src="https://i.pinimg.com/236x/2c/c8/e3/2cc8e3bbabb50c4fd76f889e29d930c4.jpg" alt="Logo" class="logo-img">
+<div class="logo-texts">
+<div class="logo-main">HUGO'S <span>PIROTECNIA</span></div>
+<div class="logo-sub">🔥 PIROTECNIA</div>
+</div>
+</a>
+
+<nav id="nav">
+<a href="#inicio">Inicio</a>
+<a href="#catalogo">Catálogo</a>
+<a href="#destacados">Destacados</a>
+<a href="#nosotros">Nosotros</a>
+<a href="#contacto">Contacto</a>
+</nav>
+
+<div class="menu" onclick="toggleMenu()">☰</div>
+</header>
+
+<main>
+
+<!-- INICIO CON EL LOGOTIPO GRANDE -->
+<section class="hero" id="inicio">
+<div class="hero-content">
+<img src="https://i.pinimg.com/236x/2c/c8/e3/2cc8e3bbabb50c4fd76f889e29d930c4.jpg" alt="Logotipo Principal" class="hero-confi-logo">
+<div class="badge">
+🔥 HUGO'S PIROTECNIA
+</div>
+<h1>
+HACEMOS DE SU FIESTA<br>
+<span>UNA ILUSIÓN</span>
+</h1>
+<p>De luces, fantasía y color.</p>
+<div class="buttons">
+<a href="#catalogo" class="btn primary">VER CATÁLOGO →</a>
+<a href="#contacto" class="btn secondary">CONTACTARNOS</a>
+</div>
+</div>
+</section>
+
+<section id="catalogo">
+<div class="section-title">
+<small>NUESTROS PRODUCTOS</small>
+<h2>CATÁLOGO <span>DESTACADO</span></h2>
+</div>
+
+<div class="filters">
+<button class="filter active" onclick="filterProducts('all',this)">Todos</button>
+<button class="filter" onclick="filterProducts('destacado',this)">Destacados</button>
+<button class="filter" onclick="filterProducts('novedad',this)">Novedades</button>
+</div>
+
+<div class="products" id="products"></div>
+</section>
+
+<div class="banner">
+<h2>HAZ QUE TU EVENTO <span>BRILLE</span></h2>
+<p>Descubre nuestro catálogo y conoce las características de cada producto.</p>
+</div>
+
+<section id="destacados">
+<div class="section-title">
+<small>LO MÁS LLAMATIVO</small>
+<h2>PRODUCTOS <span>DESTACADOS</span></h2>
+</div>
+
+<div class="products">
+<div class="card">
+<div class="product-image">💥</div>
+<div class="card-content">
+<h3>Selección Hugo's</h3>
+<p>Consulta nuestra selección disponible.</p>
+<span class="price">CONSULTAR</span>
+</div>
+</div>
+
+<div class="card">
+<div class="product-image">🌟</div>
+<div class="card-content">
+<h3>Especial de Temporada</h3>
+<p>Productos sujetos a disponibilidad.</p>
+<span class="price">CONSULTAR</span>
+</div>
+</div>
+
+<div class="card">
+<div class="product-image">🎇</div>
+<div class="card-content">
+<h3>Edición Especial</h3>
+<p>Conoce las opciones disponibles.</p>
+<span class="price">CONSULTAR</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="nosotros">
+<div class="about">
+<div>
+<small style="color:#ff6500;font-weight:bold;letter-spacing:3px;">SOBRE NOSOTROS</small>
+<h2>HUGO'S <span>PIROTECNIA</span></h2>
+<p>Somos un negocio dedicado a ofrecer productos de pirotecnia para celebraciones y eventos.</p>
+<p>Consulta nuestro catálogo, disponibilidad y condiciones directamente con nosotros.</p>
+</div>
+<div class="stats">
+<div class="stat">
+<strong>🔥</strong>
+<span>PRODUCTOS</span>
+</div>
+<div class="stat">
+<strong>★</strong>
+<span>CALIDAD</span>
+</div>
+<div class="stat">
+<strong>⚡</strong>
+<span>ATENCIÓN</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contacto" class="contact">
+<div class="section-title">
+<small>¿TIENES DUDAS?</small>
+<h2>HABLEMOS <span>🔥</span></h2>
+</div>
+
+<div class="contact-box">
+<h2>Hugo's Pirotecnia</h2>
+<p>Pregunta por productos, disponibilidad, precios, horarios y ubicación.</p>
+<div class="contact-buttons">
+<a href="#" class="contact-btn">📱 WhatsApp</a>
+<a href="#" class="contact-btn">📸 Instagram</a>
+<a href="#" class="contact-btn">📍 Ubicación</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+© 2026 <span>Hugo's Pirotecnia</span> — Todos los derechos reservados.
+</footer>
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<div class="close" onclick="closeModal()">×</div>
+<h2 id="modalTitle">Producto</h2>
+<p id="modalDescription">Descripción del producto.</p>
+<div class="video-container">
+<iframe id="youtubeVideo" src="" title="Video del producto" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+
+<!-- BOTÓN AGREGAR -->
+<button id="selectionButton" onclick="toggleSelection()">
+🛒
+<span id="selectionCount">0</span>
+</button>
+
+<div id="selectionOverlay" onclick="toggleSelection()"></div>
+
+<aside id="selectionPanel">
+<div class="selectionHeader">
+<div>
+<small>CATÁLOGO</small>
+<h2>Productos agregados</h2>
+</div>
+<button class="closeSelection" onclick="toggleSelection()">×</button>
+</div>
+
+<p class="selectionDescription">
+Aquí tienes los productos que has agregado para consultar.
+</p>
+
+<div id="selectionItems"></div>
+
+<div class="selectionFooter">
+<button class="clearSelection" onclick="clearSelection()">VACIAR AGREGADOS</button>
+</div>
+</aside>
+
+<script>
+/* =========================
+   PARTICULAS
+========================= */
+const particles = document.getElementById("particles");
+
+for(let i = 0; i < 50; i++){
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = Math.random() * 100 + "%";
+    spark.style.animationDuration = (Math.random() * 6 + 4) + "s";
+    spark.style.animationDelay = (Math.random() * 5) + "s";
+    particles.appendChild(spark);
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+const productos = [
+{nombre:"Producto 01", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 02", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 03", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 04", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 05", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 06", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 07", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 08", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 09", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 10", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 11", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 12", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 13", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 14", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 15", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 16", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 17", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 18", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 19", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 20", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 21", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 22", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 23", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 24", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 25", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 26", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 27", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 28", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 29", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 30", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 31", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 32", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 33", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 34", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 35", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 36", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 37", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 38", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 39", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 40", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 41", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 42", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 43", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 44", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""},
+{nombre:"Producto 45", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"✨", video:""},
+{nombre:"Producto 46", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🔥", video:""},
+{nombre:"Producto 47", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"💥", video:""},
+{nombre:"Producto 48", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🌟", video:""},
+{nombre:"Producto 49", descripcion:"Descripción breve del producto.", categoria:"destacado", etiqueta:"DESTACADO", emoji:"🎆", video:""},
+{nombre:"Producto 50", descripcion:"Descripción breve del producto.", categoria:"novedad", etiqueta:"NUEVO", emoji:"🎇", video:""}
+];
+
+/* =========================
+   MOSTRAR PRODUCTOS
+========================= */
+const productsContainer = document.getElementById("products");
+
+function mostrarProductos(lista){
+    productsContainer.innerHTML = "";
+    lista.forEach(function(producto){
+        const index = productos.indexOf(producto);
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <div class="product-image">
+                <div class="tag">${producto.etiqueta}</div>
+                ${producto.emoji}
+            </div>
+            <div class="card-content">
+                <h3>${producto.nombre}</h3>
+                <p>${producto.descripcion}</p>
+                <button class="card-btn" onclick="openProduct(${index})">VER</button>
+                <button class="selection-btn" onclick="addToSelection(${index})">＋ AGREGAR</button>
+            </div>
+        `;
+        productsContainer.appendChild(card);
+    });
+    activarEfecto3D();
+}
+
+mostrarProductos(productos);
+
+/* =========================
+   FILTROS
+========================= */
+function filterProducts(category,button){
+    document.querySelectorAll(".filter").forEach(function(btn){
+        btn.classList.remove("active");
+    });
+    button.classList.add("active");
+
+    if(category === "all"){
+        mostrarProductos(productos);
+        return;
+    }
+
+    const filtrados = productos.filter(function(producto){
+        return producto.categoria === category;
+    });
+    mostrarProductos(filtrados);
+}
+
+/* =========================
+   MODAL
+========================= */
+function openProduct(index){
+    const producto = productos[index];
+    document.getElementById("modalTitle").textContent = producto.nombre;
+    document.getElementById("modalDescription").textContent = producto.descripcion;
+    const video = document.getElementById("youtubeVideo");
+
+    if(producto.video){
+        video.src = "https://www.youtube.com/embed/" + producto.video;
+    }else{
+        video.src = "";
+    }
+    document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(){
+    document.getElementById("modal").classList.remove("show");
+    document.getElementById("youtubeVideo").src = "";
+}
+
+document.getElementById("modal").addEventListener("click",function(event){
+    if(event.target === this){
+        closeModal();
+    }
+});
+
+/* =========================
+   MENU MOVIL
+========================= */
+function toggleMenu(){
+    document.getElementById("nav").classList.toggle("show");
+}
+
+/* =========================
+   EFECTO 3D
+========================= */
+function activarEfecto3D(){
+    const cards = document.querySelectorAll("#products .card");
+    cards.forEach(function(card){
+        card.addEventListener("mousemove", function(event){
+            const rect = card.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const rotateX = ((y - rect.height / 2) / rect.height) * -5;
+            const rotateY = ((x - rect.width / 2) / rect.width) * 5;
+
+            card.style.transform = "translateY(-10px) perspective(800px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+        });
+
+        card.addEventListener("mouseleave", function(){
+            card.style.transform = "";
+        });
+    });
+}
+
+/* =========================
+   AGREGAR
+========================= */
+let seleccion = [];
+
+function toggleSelection(){
+    document.getElementById("selectionPanel").classList.toggle("open");
+    document.getElementById("selectionOverlay").classList.toggle("show");
+}
+
+function addToSelection(index){
+    const producto = productos[index];
+    const existe = seleccion.some(function(item){
+        return item.nombre === producto.nombre;
+    });
+
+    if(!existe){
+        seleccion.push(producto);
+    }
+
+    updateSelection();
+    document.getElementById("selectionPanel").classList.add("open");
+    document.getElementById("selectionOverlay").classList.add("show");
+}
+
+function removeFromSelection(index){
+    seleccion.splice(index,1);
+    updateSelection();
+}
+
+function clearSelection(){
+    seleccion = [];
+    updateSelection();
+}
+
+function updateSelection(){
+    const container = document.getElementById("selectionItems");
+    const count = document.getElementById("selectionCount");
+
+    count.textContent = seleccion.length;
+    container.innerHTML = "";
+
+    if(seleccion.length === 0){
+        container.innerHTML = `
+            <div class="emptySelection">
+                <strong>🛒</strong>
+                <p>Todavía no has agregado ningún producto.</p>
+            </div>
+        `;
+        return;
+    }
+
+    seleccion.forEach(function(producto,index){
+        const item = document.createElement("div");
+        item.className = "selectionItem";
+        item.innerHTML = `
+            <div class="selectionEmoji">${producto.emoji}</div>
+            <div class="selectionInfoText">
+                <h3>${producto.nombre}</h3>
+                <p>${producto.descripcion}</p>
+            </div>
+            <button class="removeSelection" onclick="removeFromSelection(${index})">×</button>
+        `;
+        container.appendChild(item);
+    });
+}
+
+updateSelection();
+</script>
+
+</body>
+</html>
