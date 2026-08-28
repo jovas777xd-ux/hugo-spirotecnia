@@ -28,8 +28,8 @@ border-bottom:1px solid rgba(255,70,0,.25);z-index:100
 
 .logo-container{display:flex;align-items:center;gap:10px}
 .mascot-logo{
-width:40px;height:40px;border-radius:50%;object-fit:cover;
-border:2px solid #ff5a00;box-shadow:0 0 10px rgba(255,90,0,0.5);
+width:45px;height:45px;border-radius:10px;object-fit:cover;
+background:#111;border:2px solid #ff5a00;box-shadow:0 0 10px rgba(255,90,0,0.5);
 animation:flotarMascota 3s ease-in-out infinite;
 }
 @keyframes flotarMascota{
@@ -55,9 +55,10 @@ background:radial-gradient(circle at center,rgba(255,70,0,.20),transparent 45%)
 .hero-content{position:relative;z-index:3;max-width:800px;margin:auto}
 
 .hero-mascot-large{
-width:160px;height:160px;border-radius:50%;object-fit:cover;
-border:4px solid #ff5a00;box-shadow:0 0 35px rgba(255,90,0,0.6);
-margin:0 auto 25px auto;display:block;
+width:180px;height:210px;border-radius:20px;object-fit:cover;
+background:rgba(15,15,15,0.6);border:3px solid #ff5a00;
+box-shadow:0 0 35px rgba(255,90,0,0.5);
+margin:0 auto 25px auto;display:block;padding:5px;
 animation:flotarMascotaGrande 4s ease-in-out infinite;
 }
 @keyframes flotarMascotaGrande{
@@ -121,8 +122,7 @@ background:#ff4500;border-radius:5px;font-size:10px;font-weight:bold
 }
 
 .card-content{padding:22px}
-.card-content h3{margin-bottom:5px}
-.card-price{color:#ff6500;font-weight:bold;font-size:15px;display:block;margin-bottom:10px}
+.card-content h3{margin-bottom:8px}
 .card-content p{color:#888;font-size:13px;line-height:1.6;margin-bottom:18px}
 
 .card-btn{
@@ -272,7 +272,6 @@ font-size:30px
 
 .selectionInfoText{flex:1}
 .selectionInfoText h3{font-size:14px;margin-bottom:4px}
-.selectionInfoText .item-price{color:#ff6500;font-size:12px;font-weight:bold;display:block;margin-bottom:6px}
 .selectionInfoText p{color:#777;font-size:11px}
 
 .removeSelection{
@@ -335,12 +334,14 @@ section{padding:75px 5%}
 
 <header>
 <div class="logo-container">
-<img src="https://i.pinimg.com/474x/3a/74/68/3a74683a0963be0b9d82069a7f8f523b.jpg" alt="Mascota" class="mascot-logo">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJTT07dksyptSvKPhht33WSKxRdjuXw0VfOoY_MWneAg&s=10" alt="Willy Logo" class="mascot-logo">
+
 <div class="logo">
 HUGO'S <span>PIROTECNIA</span>
 <span class="logo-local">📍 LOCAL 23</span>
 </div>
 </div>
+
 <nav id="nav">
 <a href="#inicio">Inicio</a>
 <a href="#catalogo">Catálogo</a>
@@ -348,45 +349,59 @@ HUGO'S <span>PIROTECNIA</span>
 <a href="#nosotros">Nosotros</a>
 <a href="#contacto">Contacto</a>
 </nav>
+
 <div class="menu" onclick="toggleMenu()">☰</div>
 </header>
 
 <main>
+
 <section class="hero" id="inicio">
 <div class="hero-content">
-<img src="https://i.pinimg.com/474x/3a/74/68/3a74683a0963be0b9d82069a7f8f523b.jpg" alt="Mascota Grande" class="hero-mascot-large">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJTT07dksyptSvKPhht33WSKxRdjuXw0VfOoY_MWneAg&s=10" alt="Willy Huevo" class="hero-mascot-large">
+
 <div class="badge">
 🔥 HUGO'S PIROTECNIA • LOCAL 23
 </div>
+
 <h1>
 HACEMOS DE SU FIESTA<br>
 <span>UNA ILUSIÓN</span>
 </h1>
+
 <p>
 Visítanos en nuestro local y encuentra la mejor variedad de luces, fantasía y color para cada uno de tus eventos especiales.
 </p>
+
 <div class="buttons">
 <a href="#catalogo" class="btn primary">VER CATÁLOGO →</a>
-<a href="https://www.google.com/maps/search/?api=1&query=19.66839,-99.12697" target="_blank" class="btn secondary">📍 Ubicación</a>
+
+<a href="https://www.google.com/maps/search/?api=1&query=19.66839,-99.12697" target="_blank" class="btn secondary">
+📍 Ubicación
+</a>
 </div>
+
 </div>
 </section>
 
 <section id="catalogo">
+
 <div class="section-title">
 <small>NUESTROS PRODUCTOS</small>
 <h2>CATÁLOGO <span>DESTACADO</span></h2>
 </div>
+
 <div class="filters">
 <button class="filter active" onclick="filterProducts('all',this)">Todos</button>
 <button class="filter" onclick="filterProducts('luz',this)">Luz</button>
 <button class="filter" onclick="filterProducts('color',this)">Color</button>
-<button class="filter" onclick="filterProducts('trueno',this)">Trueno fuerte</button>
 <button class="filter" onclick="filterProducts('bombas',this)">Bombas</button>
 <button class="filter" onclick="filterProducts('baterias',this)">Baterías</button>
 <button class="filter" onclick="filterProducts('varas',this)">Varas</button>
 </div>
+
 <div class="products" id="products"></div>
+
 </section>
 
 <div class="banner">
@@ -395,68 +410,109 @@ Visítanos en nuestro local y encuentra la mejor variedad de luces, fantasía y 
 </div>
 
 <section id="destacados">
+
 <div class="section-title">
 <small>LO MÁS LLAMATIVO</small>
 <h2>PRODUCTOS <span>DESTACADOS</span></h2>
 </div>
+
 <div class="products">
+
 <div class="card">
-<div class="product-image">💥</div>
+<div class="product-image">✨</div>
 <div class="card-content">
 <h3>Selección Hugo's</h3>
-<span class="card-price">$150.00</span>
 <p>Consulta nuestra selección disponible en el Local 23.</p>
 </div>
 </div>
+
 <div class="card">
 <div class="product-image">🌟</div>
 <div class="card-content">
 <h3>Especial de Temporada</h3>
-<span class="card-price">$250.00</span>
 <p>Productos sujetos a disponibilidad.</p>
 </div>
 </div>
+
 <div class="card">
 <div class="product-image">🎇</div>
 <div class="card-content">
 <h3>Edición Especial</h3>
-<span class="card-price">$300.00</span>
 <p>Conoce las opciones disponibles.</p>
 </div>
 </div>
+
 </div>
 </section>
 
 <section id="nosotros">
+
 <div class="about">
+
 <div>
 <small style="color:#ff6500;font-weight:bold;letter-spacing:3px;">SOBRE NOSOTROS</small>
+
 <h2>HUGO'S <span>PIROTECNIA</span></h2>
-<p>Somos un negocio dedicado a ofrecer productos de pirotecnia para celebraciones y eventos inolvidables, ubicados en el <strong>Local 23</strong>.</p>
-<p>Consulta nuestro catálogo, disponibilidad y condiciones directamente con nosotros.</p>
+
+<p>
+Somos un negocio dedicado a ofrecer productos de pirotecnia para celebraciones y eventos inolvidables, ubicados en el <strong>Local 23</strong>.
+</p>
+
+<p>
+Consulta nuestro catálogo, disponibilidad y condiciones directamente con nosotros.
+</p>
 </div>
+
 <div class="stats">
-<div class="stat"><strong>🔥</strong><span>PRODUCTOS</span></div>
-<div class="stat"><strong>★</strong><span>CALIDAD</span></div>
-<div class="stat"><strong>📍</strong><span>LOCAL 23</span></div>
+
+<div class="stat">
+<strong>🔥</strong>
+<span>PRODUCTOS</span>
+</div>
+
+<div class="stat">
+<strong>★</strong>
+<span>CALIDAD</span>
+</div>
+
+<div class="stat">
+<strong>📍</strong>
+<span>LOCAL 23</span>
+</div>
+
 </div>
 </div>
 </section>
 
 <section id="contacto" class="contact">
+
 <div class="section-title">
 <small>¿TIENES DUDAS?</small>
 <h2>HABLEMOS <span>🔥</span></h2>
 </div>
+
 <div class="contact-box">
+
 <h2>Hugo's Pirotecnia - Local 23</h2>
-<p>Pregunta por productos, disponibilidad, precios, horarios y visítanos directamente en nuestro local.</p>
+
+<p>
+Pregunta por productos, disponibilidad, horarios y visítanos directamente en nuestro local.
+</p>
+
 <div class="contact-buttons">
-<a href="https://wa.me/525535123102?text=Hola,%20me%20gustaría%20pedir%20información%20sobre%20los%20productos%20del%20Local%2023" target="_blank" class="contact-btn">📱 WhatsApp</a>
-<a href="https://www.google.com/maps/search/?api=1&query=19.66839,-99.12697" target="_blank" class="contact-btn">📍 Ubicación</a>
+
+<a href="https://wa.me/525535123102?text=Hola,%20me%20gustaría%20pedir%20información%20sobre%20los%20productos%20del%20Local%2023" target="_blank" class="contact-btn">
+📱 WhatsApp
+</a>
+
+<a href="https://www.google.com/maps/search/?api=1&query=19.66839,-99.12697" target="_blank" class="contact-btn">
+📍 Ubicación
+</a>
+
 </div>
 </div>
 </section>
+
 </main>
 
 <footer>
@@ -464,17 +520,28 @@ Visítanos en nuestro local y encuentra la mejor variedad de luces, fantasía y 
 </footer>
 
 <div class="modal" id="modal">
+
 <div class="modal-box">
+
 <div class="close" onclick="closeModal()">×</div>
+
 <h2 id="modalTitle">Producto</h2>
+
 <p id="modalDescription">Descripción del producto.</p>
+
 <div class="video-container">
-<iframe id="youtubeVideo" src="" title="Video del producto" allowfullscreen></iframe>
+
+<iframe
+id="youtubeVideo"
+src=""
+title="Video del producto"
+allowfullscreen>
+</iframe>
+
 </div>
 </div>
 </div>
 
-<!-- BOTÓN MI SELECCIÓN -->
 <button id="selectionButton" onclick="toggleSelection()">
 🛒
 <span id="selectionCount">0</span>
@@ -483,27 +550,37 @@ Visítanos en nuestro local y encuentra la mejor variedad de luces, fantasía y 
 <div id="selectionOverlay" onclick="toggleSelection()"></div>
 
 <aside id="selectionPanel">
+
 <div class="selectionHeader">
+
 <div>
 <small>CATÁLOGO</small>
 <h2>Mi selección</h2>
 </div>
+
 <button class="closeSelection" onclick="toggleSelection()">×</button>
+
 </div>
+
 <p class="selectionDescription">
 Guarda aquí los productos que quieras consultar o enviar directamente a nuestro WhatsApp.
 </p>
+
 <div id="selectionItems"></div>
+
 <div class="selectionFooter" id="selectionFooterContainer">
-    <!-- El contenido del footer y los botones se generan dinámicamente -->
 </div>
+
 </aside>
 
 <script>
+
 /* =========================
    PARTICULAS
 ========================= */
+
 const particles = document.getElementById("particles");
+
 for(let i = 0; i < 50; i++){
     const spark = document.createElement("div");
     spark.className = "spark";
@@ -513,100 +590,144 @@ for(let i = 0; i < 50; i++){
     particles.appendChild(spark);
 }
 
+
 /* =========================
-   PRODUCTOS
+   PRODUCTOS (Redistribuidos entre 5 categorías)
 ========================= */
+
 const productos = [
-{nombre:"Producto 01",precio:100,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 02",precio:120,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 03",precio:150,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 04",precio:180,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 05",precio:200,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 06",precio:90,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 07",precio:110,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 08",precio:130,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 09",precio:160,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 10",precio:190,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 11",precio:210,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 12",precio:95,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 13",precio:105,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 14",precio:125,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 15",precio:155,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 16",precio:185,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 17",precio:205,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 18",precio:85,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 19",precio:115,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 20",precio:135,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 21",precio:165,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 22",precio:195,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 23",precio:215,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 24",precio:95,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 25",precio:140,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 26",precio:150,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 27",precio:170,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 28",precio:180,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 29",precio:220,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 30",precio:100,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 31",precio:110,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 32",precio:130,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 33",precio:150,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 34",precio:190,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 35",precio:230,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 36",precio:115,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 37",precio:125,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 38",precio:145,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 39",precio:165,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 40",precio:200,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 41",precio:240,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 42",precio:105,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 43",precio:135,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 44",precio:155,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
-{nombre:"Producto 45",precio:175,descripcion:"Descripción breve del producto.",categoria:"trueno",etiqueta:"TRUENO",emoji:"💥",video:""},
-{nombre:"Producto 46",precio:210,descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
-{nombre:"Producto 47",precio:250,descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
-{nombre:"Producto 48",precio:120,descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
-{nombre:"Producto 49",precio:140,descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
-{nombre:"Producto 50",precio:160,descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""}
+
+{nombre:"Producto 01",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 02",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 03",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 04",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 05",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 06",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 07",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 08",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 09",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 10",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 11",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 12",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 13",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 14",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 15",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 16",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 17",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 18",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 19",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 20",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 21",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 22",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 23",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 24",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 25",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 26",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 27",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 28",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 29",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 30",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 31",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 32",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 33",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 34",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 35",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 36",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 37",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 38",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 39",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 40",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 41",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 42",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 43",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 44",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 45",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""},
+
+{nombre:"Producto 46",descripcion:"Descripción breve del producto.",categoria:"luz",etiqueta:"LUZ",emoji:"✨",video:""},
+{nombre:"Producto 47",descripcion:"Descripción breve del producto.",categoria:"color",etiqueta:"COLOR",emoji:"🎆",video:""},
+{nombre:"Producto 48",descripcion:"Descripción breve del producto.",categoria:"bombas",etiqueta:"BOMBA",emoji:"🧨",video:""},
+{nombre:"Producto 49",descripcion:"Descripción breve del producto.",categoria:"baterias",etiqueta:"BATERÍA",emoji:"🎇",video:""},
+{nombre:"Producto 50",descripcion:"Descripción breve del producto.",categoria:"varas",etiqueta:"VARA",emoji:"🚀",video:""}
+
 ];
+
 
 /* =========================
    MOSTRAR PRODUCTOS
 ========================= */
+
 const productsContainer = document.getElementById("products");
 
 function mostrarProductos(lista){
+
     productsContainer.innerHTML = "";
+
     lista.forEach(function(producto){
+
         const index = productos.indexOf(producto);
         const card = document.createElement("div");
         card.className = "card";
+
         card.innerHTML = `
             <div class="product-image">
-                <div class="tag">${producto.etiqueta}</div>
+                <div class="tag">
+                    ${producto.etiqueta}
+                </div>
                 ${producto.emoji}
             </div>
+
             <div class="card-content">
-                <h3>${producto.nombre}</h3>
-                <span class="card-price">$${producto.precio}.00</span>
-                <p>${producto.descripcion}</p>
-                <button class="card-btn" onclick="openProduct(${index})">VER</button>
-                <button class="selection-btn" onclick="addToSelection(${index})">AGREGAR</button>
+                <h3>
+                    ${producto.nombre}
+                </h3>
+
+                <p>
+                    ${producto.descripcion}
+                </p>
+
+                <button
+                    class="card-btn"
+                    onclick="openProduct(${index})">
+                    VER
+                </button>
+
+                <button
+                    class="selection-btn"
+                    onclick="addToSelection(${index})">
+                    AGREGAR
+                </button>
             </div>
         `;
+
         productsContainer.appendChild(card);
+
     });
+
     activarEfecto3D();
 }
 
 mostrarProductos(productos);
 
+
 /* =========================
    FILTROS
 ========================= */
+
 function filterProducts(category,button){
-    document.querySelectorAll(".filter").forEach(function(btn){
+
+    document.querySelectorAll(".filter")
+    .forEach(function(btn){
         btn.classList.remove("active");
     });
+
     button.classList.add("active");
 
     if(category === "all"){
@@ -617,16 +738,22 @@ function filterProducts(category,button){
     const filtrados = productos.filter(function(producto){
         return producto.categoria === category;
     });
+
     mostrarProductos(filtrados);
 }
+
 
 /* =========================
    MODAL
 ========================= */
+
 function openProduct(index){
+
     const producto = productos[index];
+
     document.getElementById("modalTitle").textContent = producto.nombre;
     document.getElementById("modalDescription").textContent = producto.descripcion;
+
     const video = document.getElementById("youtubeVideo");
 
     if(producto.video){
@@ -634,13 +761,16 @@ function openProduct(index){
     }else{
         video.src = "";
     }
+
     document.getElementById("modal").classList.add("show");
 }
+
 
 function closeModal(){
     document.getElementById("modal").classList.remove("show");
     document.getElementById("youtubeVideo").src = "";
 }
+
 
 document.getElementById("modal").addEventListener("click",function(event){
     if(event.target === this){
@@ -648,168 +778,244 @@ document.getElementById("modal").addEventListener("click",function(event){
     }
 });
 
+
 /* =========================
    MENU MOVIL
 ========================= */
+
 function toggleMenu(){
     document.getElementById("nav").classList.toggle("show");
 }
 
+
 /* =========================
    EFECTO 3D
 ========================= */
+
 function activarEfecto3D(){
+
     const cards = document.querySelectorAll("#products .card");
+
     cards.forEach(function(card){
+
         card.addEventListener("mousemove", function(event){
+
             const rect = card.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
+
             const rotateX = ((y - rect.height / 2) / rect.height) * -5;
             const rotateY = ((x - rect.width / 2) / rect.width) * 5;
 
-            card.style.transform = "translateY(-10px) perspective(800px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+            card.style.transform =
+            "translateY(-10px) perspective(800px) rotateX(" +
+            rotateX +
+            "deg) rotateY(" +
+            rotateY +
+            "deg)";
+
         });
 
         card.addEventListener("mouseleave", function(){
             card.style.transform = "";
         });
+
     });
+
 }
+
 
 /* =========================
    MI SELECCIÓN & WHATSAPP
 ========================= */
+
 let seleccion = [];
+
 
 function toggleSelection(){
     document.getElementById("selectionPanel").classList.toggle("open");
     document.getElementById("selectionOverlay").classList.toggle("show");
 }
 
+
 function addToSelection(index){
+
     const producto = productos[index];
+
     const indexExistente = seleccion.findIndex(function(item){
         return item.nombre === producto.nombre;
     });
 
     if(indexExistente !== -1){
         seleccion[indexExistente].cantidad += 1;
-    } else {
+    }else{
         seleccion.push({
             ...producto,
-            cantidad: 1
+            cantidad:1
         });
     }
 
     updateSelection();
+
     document.getElementById("selectionPanel").classList.add("open");
     document.getElementById("selectionOverlay").classList.add("show");
+
 }
 
-function cambiarCantidad(index, cambio){
+
+function cambiarCantidad(index,cambio){
+
     seleccion[index].cantidad += cambio;
+
     if(seleccion[index].cantidad <= 0){
-        seleccion.splice(index, 1);
+        seleccion.splice(index,1);
     }
+
     updateSelection();
+
 }
+
 
 function removeFromSelection(index){
-    seleccion.splice(index, 1);
+    seleccion.splice(index,1);
     updateSelection();
 }
+
 
 function clearSelection(){
     seleccion = [];
     updateSelection();
 }
 
+
 function updateSelection(){
+
     const container = document.getElementById("selectionItems");
     const count = document.getElementById("selectionCount");
 
-    const totalPiezas = seleccion.reduce(function(sum, item){
+    const totalPiezas = seleccion.reduce(function(sum,item){
         return sum + item.cantidad;
-    }, 0);
-
-    const precioTotal = seleccion.reduce(function(sum, item){
-        return sum + (item.precio * item.cantidad);
-    }, 0);
+    },0);
 
     count.textContent = totalPiezas;
     container.innerHTML = "";
 
     if(seleccion.length === 0){
+
         container.innerHTML = `
             <div class="emptySelection">
                 <strong>🛒</strong>
-                <p>Todavía no has seleccionado ningún producto.</p>
+                <p>
+                Todavía no has seleccionado ningún producto.
+                </p>
             </div>
         `;
-        actualizarFooter(0, 0, "");
+
+        actualizarFooter(0, "");
         return;
     }
 
-    seleccion.forEach(function(producto, index){
+
+    seleccion.forEach(function(producto,index){
+
         const item = document.createElement("div");
         item.className = "selectionItem";
 
         item.innerHTML = `
-            <div class="selectionEmoji">${producto.emoji}</div>
+            <div class="selectionEmoji">
+                ${producto.emoji}
+            </div>
+
             <div class="selectionInfoText">
-                <h3>${producto.nombre}</h3>
-                <span class="item-price">$${producto.precio * producto.cantidad}.00 (${producto.precio} c/u)</span>
-                <div style="display: flex; align-items: center; gap: 10px; margin-top: 6px;">
-                    <button onclick="cambiarCantidad(${index}, -1)" style="background:#222; color:white; border:1px solid #444; width:24px; height:24px; border-radius:4px; cursor:pointer;">-</button>
-                    <span style="font-size: 13px; font-weight: bold; color: #ff6500;">${producto.cantidad} pzas</span>
-                    <button onclick="cambiarCantidad(${index}, 1)" style="background:#222; color:white; border:1px solid #444; width:24px; height:24px; border-radius:4px; cursor:pointer;">+</button>
+                <h3>
+                    ${producto.nombre}
+                </h3>
+
+                <div style="display:flex; align-items:center; gap:10px; margin-top:6px;">
+                    <button
+                    onclick="cambiarCantidad(${index},-1)"
+                    style="background:#222; color:white; border:1px solid #444; width:24px; height:24px; border-radius:4px; cursor:pointer;">
+                    -
+                    </button>
+
+                    <span style="font-size:13px; font-weight:bold; color:#ff6500;">
+                    ${producto.cantidad} pzas
+                    </span>
+
+                    <button
+                    onclick="cambiarCantidad(${index},1)"
+                    style="background:#222; color:white; border:1px solid #444; width:24px; height:24px; border-radius:4px; cursor:pointer;">
+                    +
+                    </button>
                 </div>
             </div>
-            <button class="removeSelection" onclick="removeFromSelection(${index})">×</button>
+
+            <button
+            class="removeSelection"
+            onclick="removeFromSelection(${index})">
+            ×
+            </button>
         `;
+
         container.appendChild(item);
+
     });
 
-    // Generar texto estructurado para WhatsApp
+
     let mensaje = "Hola, me gustaría hacer el siguiente pedido del Local 23:\n\n";
+
     seleccion.forEach(function(item){
-        mensaje += `• ${item.cantidad}x ${item.nombre} - $${item.precio * item.cantidad}.00\n`;
+        mensaje += `• ${item.cantidad}x ${item.nombre}\n`;
     });
-    mensaje += `\n*Total de piezas:* ${totalPiezas}\n*Precio Total:* $${precioTotal}.00`;
-    
+
+    mensaje += `\n*Total de piezas:* ${totalPiezas}`;
+
     const enlaceWhatsApp = `https://wa.me/525535123102?text=${encodeURIComponent(mensaje)}`;
 
-    actualizarFooter(totalPiezas, precioTotal, enlaceWhatsApp);
+    actualizarFooter(totalPiezas, enlaceWhatsApp);
+
 }
 
-function actualizarFooter(totalPiezas, precioTotal, enlaceWhatsApp){
+
+function actualizarFooter(totalPiezas, enlaceWhatsApp){
+
     const footerContainer = document.getElementById("selectionFooterContainer");
-    
+
     if(seleccion.length === 0){
+
         footerContainer.innerHTML = `
-            <div style="color: #666; text-align: center; font-size: 13px; padding: 10px 0;">
+            <div style="color:#666; text-align:center; font-size:13px; padding:10px 0;">
                 Agrega productos para poder enviarlos por WhatsApp.
             </div>
         `;
         return;
+
     }
 
     footerContainer.innerHTML = `
-        <div style="padding: 10px 0; color: #aaa; font-size: 14px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #222; margin-bottom: 5px;">
-            <div style="display: flex; justify-content: space-between;"><span>Total de piezas:</span> <strong style="color: #ff6500;">${totalPiezas}</strong></div>
-            <div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Precio Total:</span> <strong style="color: #ff6500;">$${precioTotal}.00</strong></div>
+        <div style="padding:10px 0; color:#aaa; font-size:14px; display:flex; flex-direction:column; gap:6px; border-bottom:1px solid #222; margin-bottom:5px;">
+            <div style="display:flex; justify-content:space-between;">
+                <span>Total de piezas:</span>
+                <strong style="color:#ff6500;">
+                    ${totalPiezas}
+                </strong>
+            </div>
         </div>
+
         <a href="${enlaceWhatsApp}" target="_blank" class="whatsappOrderBtn">
             💬 Enviar pedido por WhatsApp
         </a>
+
         <button class="clearSelection" onclick="clearSelection()">
             VACIAR SELECCIÓN
         </button>
     `;
+
 }
 
+
 updateSelection();
+
 </script>
 
 </body>
